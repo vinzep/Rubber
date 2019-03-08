@@ -1,6 +1,8 @@
 package com.example.rubber
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +23,19 @@ class RegisterActivity : AppCompatActivity() {
         have_an_account.setOnClickListener {
             val intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
+        }
+        photo_user_button.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent,666)
+        }
+    }
+
+    var selectedPhotoUri: Uri? = null
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode==666&&resultCode== Activity.RESULT_OK && data!=null){
+
         }
     }
     private fun doRegister(){
